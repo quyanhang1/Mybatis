@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.mapper.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.example.domain.User" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="user_qq" property="userQq" jdbcType="VARCHAR" />
+    <result column="user_type" property="userType" jdbcType="VARCHAR" />
+    <result column="user_will" property="userWill" jdbcType="VARCHAR" />
+    <result column="user_school" property="userSchool" jdbcType="VARCHAR" />
+    <result column="user_link" property="userLink" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_name, user_qq, user_type, user_will, user_school, user_link
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from users2
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from users2
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.domain.User" >
+    insert into users2 (id, user_name, user_qq, 
+      user_type, user_will, user_school, 
+      user_link)
+    values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{userQq,jdbcType=VARCHAR}, 
+      #{userType,jdbcType=VARCHAR}, #{userWill,jdbcType=VARCHAR}, #{userSchool,jdbcType=VARCHAR}, 
+      #{userLink,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.domain.User" >
+    insert into users2
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="userQq != null" >
+        user_qq,
+      </if>
+      <if test="userType != null" >
+        user_type,
+      </if>
+      <if test="userWill != null" >
+        user_will,
+      </if>
+      <if test="userSchool != null" >
+        user_school,
+      </if>
+      <if test="userLink != null" >
+        user_link,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userQq != null" >
+        #{userQq,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null" >
+        #{userType,jdbcType=VARCHAR},
+      </if>
+      <if test="userWill != null" >
+        #{userWill,jdbcType=VARCHAR},
+      </if>
+      <if test="userSchool != null" >
+        #{userSchool,jdbcType=VARCHAR},
+      </if>
+      <if test="userLink != null" >
+        #{userLink,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.domain.User" >
+    update users2
+    <set >
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userQq != null" >
+        user_qq = #{userQq,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null" >
+        user_type = #{userType,jdbcType=VARCHAR},
+      </if>
+      <if test="userWill != null" >
+        user_will = #{userWill,jdbcType=VARCHAR},
+      </if>
+      <if test="userSchool != null" >
+        user_school = #{userSchool,jdbcType=VARCHAR},
+      </if>
+      <if test="userLink != null" >
+        user_link = #{userLink,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.domain.User" >
+    update users2
+    set user_name = #{userName,jdbcType=VARCHAR},
+      user_qq = #{userQq,jdbcType=VARCHAR},
+      user_type = #{userType,jdbcType=VARCHAR},
+      user_will = #{userWill,jdbcType=VARCHAR},
+      user_school = #{userSchool,jdbcType=VARCHAR},
+      user_link = #{userLink,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
